@@ -1,0 +1,28 @@
+spring:
+  datasource:
+    dynamic:
+      datasource:
+        master:
+          username: root
+          password: "zc142500"
+          url: jdbc:mysql://192.168.31.124:13306/test
+          driver-class-name: com.mysql.jdbc.Driver
+        #  schema: db/schema.sql
+    #    slave_1:
+    #      username: root
+    #      password: "zc142500"
+    #      url: jdbc:mysql://192.168.31.xx:3306/dynamic
+    #      driver-class-name: com.mysql.jdbc.Driver
+    #    slave_2:
+    #      username: root
+    #      password: "zc142500"
+    #      url: jdbc:mysql://192.168.31.xx:3306/dynamic
+    #      driver-class-name: com.mysql.jdbc.Driver
+    #    slave_3:
+    #      username: root
+    #      password: "zc142500"
+    #      url: jdbc:mysql://192.168.31.xx:3306/dynamic
+    #      driver-class-name: com.mysql.jdbc.Driver
+logging:
+  level:
+    com.baomidou: debug
