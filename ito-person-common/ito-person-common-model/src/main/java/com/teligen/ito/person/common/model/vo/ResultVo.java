@@ -24,7 +24,13 @@ public class ResultVo<T> implements Serializable {
         return this;
     }
 
-
+    public ResultVo<T> init(boolean status,String code,String msg,T t){
+        this.status=status;
+        this.code=code;
+        this.result=t;
+        this.msg=msg;
+        return this;
+    }
 
     public boolean getStatus() {
         return status;

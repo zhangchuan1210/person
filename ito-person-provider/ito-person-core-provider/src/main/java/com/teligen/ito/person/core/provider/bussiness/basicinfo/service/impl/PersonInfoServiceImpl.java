@@ -1,7 +1,6 @@
 package com.teligen.ito.person.core.provider.bussiness.basicinfo.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.teligen.ito.person.common.model.entity.TbPersonBasicInfo;
 import com.teligen.ito.person.common.model.query.PageQuery;
@@ -40,7 +39,6 @@ public class PersonInfoServiceImpl implements PersonInfoService {
         personIdentificationNumberService.setComponentInterface(personExtInfoService);
         personBasicInfoService.setComponentInterface(personIdentificationNumberService);
         personBasicInfoService.addPerson(personInfoVo,null);
-
         return personInfoVo;
     }
 
@@ -61,4 +59,47 @@ public class PersonInfoServiceImpl implements PersonInfoService {
         return result;
 
     }
+
+    @Override
+    @Transactional
+    public Boolean updatePerson(PersonInfoVo personInfoVo) {
+        personIdentificationNumberService.setComponentInterface(personExtInfoService);
+        personBasicInfoService.setComponentInterface(personIdentificationNumberService);
+        Boolean res=personBasicInfoService.updatePerson(personInfoVo);
+
+        return res;
+    }
+
+    @Override
+    @Transactional
+    public Boolean batchUpdate(List<PersonInfoVo> personInfoVos) {
+        personIdentificationNumberService.setComponentInterface(personExtInfoService);
+        personBasicInfoService.setComponentInterface(personIdentificationNumberService);
+        Boolean res=personBasicInfoService.batchUpdate(personInfoVos);
+
+        return res;
+
+    }
+
+    @Override
+    @Transactional
+    public Boolean deletePerson(PersonInfoVo personInfoVo) {
+        personIdentificationNumberService.setComponentInterface(personExtInfoService);
+        personBasicInfoService.setComponentInterface(personIdentificationNumberService);
+        Boolean res=personBasicInfoService.deletePerson(personInfoVo);
+
+        return res;
+    }
+
+    @Override
+    @Transactional
+    public Boolean batchDeletePerson(List<PersonInfoVo> personInfoVo) {
+        personIdentificationNumberService.setComponentInterface(personExtInfoService);
+        personBasicInfoService.setComponentInterface(personIdentificationNumberService);
+        Boolean res=personBasicInfoService.batchDeletePerson(personInfoVo);
+
+        return res;
+    }
+
+
 }

@@ -20,4 +20,13 @@ public interface ComponentInterface {
    void setComponentInterface(ComponentInterface componentInterface) ;
 
    PersonInfoVo addPerson(PersonInfoVo personInfoVo,String pid);
+
+
+   Boolean updatePerson(PersonInfoVo personInfoVo);
+
+   Boolean batchUpdate(List<PersonInfoVo> personInfoVos);
+
+    Boolean deletePerson(PersonInfoVo personInfoVo);
+
+   Boolean batchDeletePerson(List<PersonInfoVo> personInfoVo);
 }

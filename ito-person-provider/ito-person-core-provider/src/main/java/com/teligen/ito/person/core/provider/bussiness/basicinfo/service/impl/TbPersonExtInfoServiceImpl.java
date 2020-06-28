@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * <p>
@@ -33,6 +34,7 @@ import java.util.Map;
  */
 @Service
 public class TbPersonExtInfoServiceImpl extends ServiceImpl<TbPersonExtInfoMapper, TbPersonExtInfo> implements TbPersonExtInfoService {
+
     private Log log= LogFactory.get();
     private ComponentInterface componentInterface;
     public ComponentInterface getComponentInterface() {
@@ -54,6 +56,57 @@ public class TbPersonExtInfoServiceImpl extends ServiceImpl<TbPersonExtInfoMappe
             personInfoVo=this.getComponentInterface().addPerson(personInfoVo, pid);
         }
         return personInfoVo;
+    }
+
+    @Override
+    public Boolean updatePerson(PersonInfoVo personInfoVo) {
+        List<TbPersonExtInfo> extInfoList=this.divideExtInfo(personInfoVo,personInfoVo.getPid());
+        boolean res=this.updateBatchById(extInfoList);
+        if(res && null!=this.getComponentInterface()){
+            res=this.getComponentInterface().updatePerson(personInfoVo);
+        }
+        return res;
+    }
+
+    @Override
+    public Boolean batchUpdate(List<PersonInfoVo> personInfoVos) {
+        List<TbPersonExtInfo> extInfos=new ArrayList<>();
+        personInfoVos.parallelStream().forEach(t->{
+            List<TbPersonExtInfo> subList=this.divideExtInfo(t,t.getPid());
+            extInfos.addAll(subList);
+        });
+        boolean res=this.updateBatchById(extInfos,1000);
+        if(res && null==this.getComponentInterface()){
+           res= this.getComponentInterface().batchUpdate(personInfoVos);
+        }
+        return res;
+    }
+
+    @Override
+    public Boolean deletePerson(PersonInfoVo personInfoVo) {
+
+        String b_pid=personInfoVo.getPid();
+        QueryWrapper<TbPersonExtInfo> queryWrapper=new QueryWrapper<>();
+        queryWrapper.eq("b_pid",b_pid);
+        boolean res=this.remove(queryWrapper);
+        if(res && null==this.getComponentInterface()){
+            res=this.getComponentInterface().deletePerson(personInfoVo);
+        }
+        return res;
+    }
+
+    @Override
+    public Boolean batchDeletePerson(List<PersonInfoVo> personInfoVo) {
+        List<String> pids=new ArrayList<>();
+        pids=personInfoVo.parallelStream().map(PersonInfoVo::getPid).collect(Collectors.toList());
+        QueryWrapper<TbPersonExtInfo> queryWrapper=new QueryWrapper<>();
+        queryWrapper.in("b_pid",pids);
+        boolean res=this.remove(queryWrapper);
+        if(res && null==this.getComponentInterface()){
+            res=this.getComponentInterface().batchDeletePerson(personInfoVo);
+        }
+        return res;
+
     }
 
     @Override

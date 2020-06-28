@@ -58,7 +58,56 @@ public class TbPersonIdentificationNumberServiceImpl extends ServiceImpl<TbPerso
         return personInfoVo;
     }
 
+    @Override
+    public Boolean updatePerson(PersonInfoVo personInfoVo) {
+        TbPersonIdentificationNumber identificationNumber=new TbPersonIdentificationNumber();
+        BeanUtils.copyProperties(personInfoVo.getIdentificationNumber(),identificationNumber);
+        boolean res=this.updateById(identificationNumber);
+        if(res && null!=this.getComponentInterface()){
+            res=this.getComponentInterface().updatePerson(personInfoVo);
+        }
+        return res;
+    }
 
+    @Override
+    public Boolean batchUpdate(List<PersonInfoVo> personInfoVos) {
+        List<TbPersonIdentificationNumber> identificationNumbers=new ArrayList<>();
+        personInfoVos.parallelStream().forEach(t->{
+            TbPersonIdentificationNumber identificationNumber=new TbPersonIdentificationNumber();
+            BeanUtils.copyProperties(t,identificationNumber);
+            identificationNumbers.add(identificationNumber);
+
+        });
+        boolean res=this.updateBatchById(identificationNumbers,1000);
+        if(res && null==this.getComponentInterface()){
+            this.getComponentInterface().batchUpdate(personInfoVos);
+        }
+        return res;
+    }
+
+    @Override
+    public Boolean deletePerson(PersonInfoVo personInfoVo) {
+        Integer id=personInfoVo.getIdentificationNumber().getId();
+        boolean res=this.removeById(id);
+        if(res && null!=this.getComponentInterface()){
+
+            res=this.getComponentInterface().deletePerson(personInfoVo);
+        }
+        return res;
+    }
+
+    @Override
+    public Boolean batchDeletePerson(List<PersonInfoVo> personInfoVo) {
+        List<Integer> ids=new ArrayList<>();
+        personInfoVo.parallelStream().forEach(t->{
+            ids.add(t.getIdentificationNumber().getId());
+        });
+        boolean res=this.removeByIds(ids);
+        if(res && null!=this.getComponentInterface()){
+            res=this.getComponentInterface().batchDeletePerson(personInfoVo);
+        }
+        return res;
+    }
 
 
     @Override

@@ -59,7 +59,51 @@ public class TbPersonBasicInfoServiceImpl extends ServiceImpl<TbPersonBasicInfoM
         return personInfoVo;
     }
 
+    @Override
+    public Boolean updatePerson(PersonInfoVo personInfoVo) {
+        TbPersonBasicInfo basicInfo=new TbPersonBasicInfo();
+        BeanUtils.copyProperties(personInfoVo,basicInfo);
+        boolean res=this.updateById(basicInfo);
+        if(res){
+            res=this.getComponentInterface().updatePerson(personInfoVo);
+        }
+        return res;
+    }
 
+    @Override
+    public Boolean batchUpdate(List<PersonInfoVo> personInfoVos) {
+        List<TbPersonBasicInfo> basicInfos=new ArrayList<>();
+        personInfoVos.parallelStream().forEach(t->{
+            TbPersonBasicInfo basicInfo=new TbPersonBasicInfo();
+             BeanUtils.copyProperties(t,basicInfo);
+             basicInfos.add(basicInfo);
+        });
+        boolean res=this.updateBatchById(basicInfos);
+        if(res && null!=this.getComponentInterface()){
+            res=this.getComponentInterface().batchUpdate(personInfoVos);
+        }
+        return res;
+    }
+
+    @Override
+    public Boolean deletePerson(PersonInfoVo personInfoVo) {
+        boolean res=this.removeById(personInfoVo.getId());
+        if(res && null==this.getComponentInterface()){
+            res=this.getComponentInterface().deletePerson(personInfoVo);
+        }
+        return res;
+    }
+
+    @Override
+    public Boolean batchDeletePerson(List<PersonInfoVo> personInfoVo) {
+        List<Integer> ids=new ArrayList<>();
+        ids=personInfoVo.parallelStream().map(PersonInfoVo::getId).collect(Collectors.toList());
+        boolean res=this.removeByIds(ids);
+        if(res && null!=this.getComponentInterface()){
+            res=this.getComponentInterface().batchDeletePerson(personInfoVo);
+        }
+        return res;
+    }
 
 
     @Override

@@ -3,6 +3,7 @@ package com.teligen.ito.person.core.provider.bussiness.basicinfo.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import com.teligen.ito.person.common.model.query.PageQuery;
 import com.teligen.ito.person.core.provider.bussiness.basicinfo.vo.PersonExtInfo;
 import com.teligen.ito.person.common.model.vo.PersonInfoVo;
@@ -62,14 +63,29 @@ public class PersonInfoController {
        ResultVo<PersonInfoVo> resultVo=new ResultVo<>();
        PersonInfoVo res=personInfoVo;
        try{
-           return resultVo.success(res);
-
+           Boolean result=personInfoService.deletePerson(personInfoVo);
+           return resultVo.init(result,"","",personInfoVo);
        }catch(Exception e){
-
            e.printStackTrace();
            return resultVo.fail(res);
        }
   }
+
+
+    @RequestMapping(value="/batchDelete",method = RequestMethod.POST)
+    @ApiOperation(value = "删除基本信息",notes="删除基本信息")
+    @ResponseBody
+    public ResultVo<Boolean> batchDelete(@RequestBody List<PersonInfoVo> personInfoVo,HttpServletRequest request){
+        ResultVo<Boolean> resultVo=new ResultVo<>();
+        Boolean res=false;
+        try{
+            Boolean result=personInfoService.batchDeletePerson(personInfoVo);
+            return resultVo.init(result,"","",result);
+        }catch(Exception e){
+            e.printStackTrace();
+            return resultVo.fail(res);
+        }
+    }
 
 
     @RequestMapping(value="/update",method = RequestMethod.POST)
@@ -79,7 +95,25 @@ public class PersonInfoController {
         ResultVo<PersonInfoVo> resultVo=new ResultVo<>();
         PersonInfoVo res=personInfoVo;
         try{
-            return resultVo.success(res);
+
+            Boolean result=personInfoService.updatePerson(personInfoVo);
+            return resultVo.init(result,"","",res);
+        }catch(Exception e){
+
+            e.printStackTrace();
+            return resultVo.fail(personInfoVo);
+        }
+    }
+
+    @RequestMapping(value="/batchUpdate",method = RequestMethod.POST)
+    @ApiOperation(value = "更新基本信息",notes="更新基本信息")
+    @ResponseBody
+    public ResultVo<Boolean> batchUpdate(@RequestBody List<PersonInfoVo> personInfoVos,HttpServletRequest request){
+        ResultVo<Boolean> resultVo=new ResultVo<>();
+        Boolean res=false;
+        try{
+            res=personInfoService.batchUpdate(personInfoVos);
+            return resultVo.init(res,"","",res);
 
         }catch(Exception e){
 

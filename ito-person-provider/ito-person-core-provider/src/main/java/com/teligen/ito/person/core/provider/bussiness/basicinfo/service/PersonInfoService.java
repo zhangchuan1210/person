@@ -12,4 +12,12 @@ public interface PersonInfoService {
     PersonInfoVo add(PersonInfoVo personInfoVo);
     Boolean batchAdd(List<PersonInfoVo> personInfoVo);
     Page<PersonInfoVo> pagingQuery(PageQuery<PersonInfoVo> pageQuery);
+
+    Boolean updatePerson(PersonInfoVo personInfoVo);
+
+    Boolean batchUpdate(List<PersonInfoVo> personInfoVos);
+
+    Boolean deletePerson(PersonInfoVo personInfoVo);
+
+    Boolean batchDeletePerson(List<PersonInfoVo> personInfoVo);
 }
