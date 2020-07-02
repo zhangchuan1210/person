@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.teligen.ito.person.common.model.entity.TbPersonBasicInfo;
 import com.teligen.ito.person.common.model.query.PageQuery;
+import com.teligen.ito.person.core.provider.bussiness.basicinfo.design.CheckStrategy;
 import com.teligen.ito.person.core.provider.bussiness.basicinfo.vo.IPersonExtVo;
 import com.teligen.ito.person.common.model.vo.PersonInfoVo;
 import com.teligen.ito.person.core.provider.bussiness.basicinfo.service.*;
@@ -30,6 +31,9 @@ public class PersonInfoServiceImpl implements PersonInfoService {
     private TbPersonIdentificationNumberService personIdentificationNumberService;
     @Autowired
     private IPersonExtVo personExtVo;
+    @Autowired
+    private CheckStrategy checkStrategy;
+
 
     private Log log=LogFactory.getLog(this.getClass());
 
@@ -100,6 +104,10 @@ public class PersonInfoServiceImpl implements PersonInfoService {
 
         return res;
     }
+
+
+
+
 
 
 }

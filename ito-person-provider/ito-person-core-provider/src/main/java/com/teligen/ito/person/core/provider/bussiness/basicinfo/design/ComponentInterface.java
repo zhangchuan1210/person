@@ -1,4 +1,4 @@
-package com.teligen.ito.person.core.provider.bussiness.basicinfo.decorator;
+package com.teligen.ito.person.core.provider.bussiness.basicinfo.design;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
