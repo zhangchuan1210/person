@@ -9,7 +9,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.teligen.ito.person.common.model.entity.TbPersonBasicInfo;
 import com.teligen.ito.person.common.model.query.PageQuery;
 import com.teligen.ito.person.common.model.vo.PersonInfoVo;
-import com.teligen.ito.person.core.provider.bussiness.basicinfo.decorator.ComponentInterface;
+import com.teligen.ito.person.core.provider.bussiness.basicinfo.design.ComponentInterface;
 import com.teligen.ito.person.core.provider.bussiness.basicinfo.mapper.TbPersonBasicInfoMapper;
 import com.teligen.ito.person.core.provider.bussiness.basicinfo.service.TbPersonBasicInfoService;
 import com.teligen.ito.person.core.provider.bussiness.basicinfo.vo.IPersonExtVo;

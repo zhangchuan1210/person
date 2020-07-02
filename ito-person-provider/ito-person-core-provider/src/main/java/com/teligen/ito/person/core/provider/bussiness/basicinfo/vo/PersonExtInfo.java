@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 import java.util.Date;
 
 @Component
-public class PersonExtInfo implements IPersonExtVo {
+public class PersonExtInfo extends IPersonExtVo {
     private String address;
 
     public String getAddress() {

@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.teligen.ito.person.common.model.entity.TbPersonBasicInfo;
 import com.teligen.ito.person.common.model.query.PageQuery;
+import com.teligen.ito.person.common.model.vo.PartitionInfoVo;
 import com.teligen.ito.person.core.provider.bussiness.basicinfo.design.CheckStrategy;
 import com.teligen.ito.person.core.provider.bussiness.basicinfo.vo.IPersonExtVo;
 import com.teligen.ito.person.common.model.vo.PersonInfoVo;
@@ -104,6 +105,21 @@ public class PersonInfoServiceImpl implements PersonInfoService {
 
         return res;
     }
+
+    public PartitionInfoVo<PersonInfoVo> batchAddUpdate(List<PersonInfoVo> source,List<PersonInfoVo> target){
+        PartitionInfoVo<PersonInfoVo> res=new PartitionInfoVo<>();
+        PartitionInfoVo<PersonInfoVo> partitionInfoVo=checkStrategy.unique(source,target);
+        if(partitionInfoVo.getAdd().size()>0){
+            boolean addFlag=this.batchAdd(partitionInfoVo.getAdd());
+        }
+        if(partitionInfoVo.getUpdate().size()>0){
+            boolean updateFlag=this.batchUpdate(partitionInfoVo.getUpdate());
+        }
+        return res;
+    }
+
+
+
 
 
 

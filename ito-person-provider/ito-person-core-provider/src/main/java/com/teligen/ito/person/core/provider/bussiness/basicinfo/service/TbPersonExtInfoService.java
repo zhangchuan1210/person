@@ -2,7 +2,7 @@ package com.teligen.ito.person.core.provider.bussiness.basicinfo.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.teligen.ito.person.common.model.entity.TbPersonExtInfo;
-import com.teligen.ito.person.core.provider.bussiness.basicinfo.decorator.ComponentInterface;
+import com.teligen.ito.person.core.provider.bussiness.basicinfo.design.ComponentInterface;
 
 /**
  * <p>
