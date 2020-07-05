@@ -5,7 +5,7 @@ spring:
         master:
           username: root
           password: "zc142500"
-          url: jdbc:mysql://192.168.31.87:3306/person?characterEncoding=utf8&serverTimezone=GMT%2B8
+          url: jdbc:mysql://localhost:3306/person?characterEncoding=utf8&serverTimezone=GMT%2B8
           driver-class-name: com.mysql.jdbc.Driver
         #  schema: db/schema.sql
     #    slave_1:
@@ -25,6 +25,18 @@ spring:
     #      driver-class-name: com.mysql.jdbc.Driver
   application:
     name: ito-person-core-provider
+  redis:
+    database: 0
+    timeout: 60000
+    lettuce:
+      pool:
+        max-active: 100
+        max-idle: 50
+        min-idle: 10
+        max-wait: 1000
+    sentinel:
+      master: mymaster
+      nodes: 192.168.31.124:26379,192.168.31.124:26380,192.168.31.124:26381
 logging:
   level:
     com.baomidou: debug
