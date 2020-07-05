@@ -11,7 +11,7 @@ public class DbInfo {
         return dbId;
     }
 
-    public void setDbId(String dbId) {
+    public void setDbId(Integer dbId) {
         this.dbId = dbId;
     }
 
@@ -27,7 +27,7 @@ public class DbInfo {
         return tbId;
     }
 
-    public void setTbId(String tbId) {
+    public void setTbId(Integer tbId) {
         this.tbId = tbId;
     }
 
@@ -43,7 +43,7 @@ public class DbInfo {
         return groupId;
     }
 
-    public void setGroupId(String groupId) {
+    public void setGroupId(Integer groupId) {
         this.groupId = groupId;
     }
 

@@ -13,4 +13,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface TbDbDbService extends IService<TbDbDb> {
 
+    TbDbDb selectDb(String id);
 }
