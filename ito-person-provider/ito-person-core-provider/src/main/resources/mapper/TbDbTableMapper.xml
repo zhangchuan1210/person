@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.teligen.ito.person.core.provider.bussiness.basicinfo.manager.databasequery.mapper.TbDbTableMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.teligen.ito.person.core.provider.bussiness.basicinfo.manager.databasequery.entity.TbDbTable">
+        <result column="table_id" property="tableId" />
+        <result column="db_id" property="dbId" />
+        <result column="table_name" property="tableName" />
+        <result column="start_no" property="startNo" />
+        <result column="end_no" property="endNo" />
+    </resultMap>
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        table_id, db_id, table_name, start_no, end_no
+    </sql>
+
+</mapper>
