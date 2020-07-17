@@ -11,6 +11,8 @@ import com.teligen.ito.person.core.provider.bussiness.basicinfo.vo.DbInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Map;
+
 @Service
 public class DbServiceImpl implements IDbService {
     @Autowired
@@ -33,4 +35,18 @@ public class DbServiceImpl implements IDbService {
         dbInfo.setTbName(dbTable.getTableName());
         return dbInfo;
     }
+
+
+    public DbInfo getDbInfo(Integer key){
+        Map<Integer,TbDbGroup> groupMap=dbGroupService.listByStartNo();
+        Map<Integer, Map<String,TbDbDb>> dbMap=dbDbService.listDbByGroupId();
+        Map<Integer, Map<Integer,TbDbTable>> tableMap=dbTableService.getTableByDbId();
+
+        return null;
+    }
+
+
+
+
+
 }

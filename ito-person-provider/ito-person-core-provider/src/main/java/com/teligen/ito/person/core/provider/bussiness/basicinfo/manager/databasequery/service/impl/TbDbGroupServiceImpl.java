@@ -7,6 +7,12 @@ import com.teligen.ito.person.core.provider.bussiness.basicinfo.manager.database
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+
 /**
  * <p>
  *  服务实现类
@@ -25,4 +31,12 @@ public class TbDbGroupServiceImpl extends ServiceImpl<TbDbGroupMapper, TbDbGroup
         TbDbGroup group=this.getOne(queryWrapper);
         return group;
     }
+    @Override
+    public Map<Integer,TbDbGroup> listByStartNo(){
+        List<TbDbGroup> dbGroupList=this.list();
+        Map<Integer,TbDbGroup> dbGroupMap=dbGroupList.stream().collect(Collectors.toMap(TbDbGroup::getStartNo, Function.identity(),(key1, key2)->key2));
+        return dbGroupMap;
+
+    }
+
 }

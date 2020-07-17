@@ -3,6 +3,8 @@ package com.teligen.ito.person.core.provider.bussiness.basicinfo.manager.databas
 import com.teligen.ito.person.core.provider.bussiness.basicinfo.manager.databasequery.entity.TbDbGroup;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.Map;
+
 /**
  * <p>
  *  服务类
@@ -14,4 +16,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
 public interface TbDbGroupService extends IService<TbDbGroup> {
 
     TbDbGroup selectGroup(String id);
+
+    Map<Integer,TbDbGroup> listByStartNo();
 }
