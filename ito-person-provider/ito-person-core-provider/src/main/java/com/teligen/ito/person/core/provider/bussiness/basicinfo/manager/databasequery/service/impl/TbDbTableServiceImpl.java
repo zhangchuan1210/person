@@ -54,6 +54,13 @@ public class TbDbTableServiceImpl extends ServiceImpl<TbDbTableMapper, TbDbTable
         return result;
     }
 
+    @Override
+    public List<TbDbTable> testJoin(){
+      QueryWrapper<TbDbTable> queryWrapper=new QueryWrapper<>();
+      queryWrapper.eq("table_id","2");
+      List<TbDbTable> result=this.baseMapper.testJoin(queryWrapper);
+      return result;
+    }
 
 
 }

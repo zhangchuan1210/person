@@ -1,13 +1,14 @@
 package com.teligen.ito.person.core.provider.bussiness.basicinfo.vo;
 
 public class DbInfo {
-    private String dbId;
+    private Integer dbId;
     private String dbName;
-    private String tbId;
+    private Integer tbId;
     private String tbName;
-    private String groupId;
+    private Integer groupId;
 
-    public String getDbId() {
+    public Integer
+    getDbId() {
         return dbId;
     }
 
@@ -23,7 +24,7 @@ public class DbInfo {
         this.dbName = dbName;
     }
 
-    public String getTbId() {
+    public Integer getTbId() {
         return tbId;
     }
 
@@ -39,7 +40,7 @@ public class DbInfo {
         this.tbName = tbName;
     }
 
-    public String getGroupId() {
+    public Integer getGroupId() {
         return groupId;
     }
 

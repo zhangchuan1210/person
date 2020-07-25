@@ -15,4 +15,12 @@
         table_id, db_id, table_name, start_no, end_no
     </sql>
 
+
+    <select id="testJoin" resultType="com.teligen.ito.person.core.provider.bussiness.basicinfo.manager.databasequery.entity.TbDbTable">
+        select * from (
+        select a.* from tb_db_table a left join tb_db_db b on a.db_id=b.db_id
+        ) b ${ew.customSqlSegment}
+
+    </select>
+
 </mapper>

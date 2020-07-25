@@ -38,11 +38,41 @@ public class DbServiceImpl implements IDbService {
 
 
     public DbInfo getDbInfo(Integer key){
+        DbInfo dbInfo=new DbInfo();
         Map<Integer,TbDbGroup> groupMap=dbGroupService.listByStartNo();
         Map<Integer, Map<String,TbDbDb>> dbMap=dbDbService.listDbByGroupId();
         Map<Integer, Map<Integer,TbDbTable>> tableMap=dbTableService.getTableByDbId();
-
-        return null;
+        Integer tempkey=0;
+        for(Integer groupKey:groupMap.keySet()){
+            if(key>groupKey){
+                tempkey=groupKey;
+                continue;
+            }
+        }
+        TbDbGroup dbGroup=groupMap.get(tempkey);
+        Integer groupId=dbGroup.getGroupId();
+        Map<String,TbDbDb> dbDbMap=dbMap.get(groupId);
+        Integer hashValue=key%11;
+        TbDbDb tbDbDb=null;
+        for(String hashKey:dbDbMap.keySet()){
+            if(hashKey.contains(hashValue.toString())){
+                tbDbDb=dbDbMap.get(hashKey);
+                break;
+            }
+        }
+        Map<Integer,TbDbTable> dbTableMap=tableMap.get(tbDbDb.getDbId());
+        Integer tempKey=0;
+        for(Integer tableKey:dbTableMap.keySet()){
+            if(key>tableKey){
+                tempKey=tableKey;
+                continue;
+            }
+        }
+        TbDbTable table=dbTableMap.get(tempKey);
+        dbInfo.setGroupId(tempkey);
+        dbInfo.setDbId(tbDbDb.getDbId());
+        dbInfo.setTbId(tempKey);
+        return dbInfo;
     }
 
 

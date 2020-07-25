@@ -2,6 +2,7 @@ package com.teligen.ito.person.core.provider.bussiness.basicinfo.manager.databas
 
 import com.teligen.ito.person.core.provider.bussiness.basicinfo.manager.databasequery.entity.TbDbGroup;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Mapper;
 
 /**
  * <p>
@@ -11,6 +12,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @author zhangchuan
  * @since 2020-07-04
  */
+@Mapper
 public interface TbDbGroupMapper extends BaseMapper<TbDbGroup> {
 
 }

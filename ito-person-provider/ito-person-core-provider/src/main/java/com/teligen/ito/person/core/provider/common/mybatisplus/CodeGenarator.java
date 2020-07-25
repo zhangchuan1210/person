@@ -13,8 +13,8 @@ import java.util.List;
 import java.util.Scanner;
 
 public class CodeGenarator {
-    private static String packageName="com.teligen.ito.person.core.provider";
-    private static String projectPath1="\\ito-person-provider\\ito-person-core-provider";
+    private static String packageName="com.teligen.ito.person.core.provider.bussiness.basicinfo.manager.databasequery";
+    private static String projectPath1="/ito-person-provider/ito-person-core-provider";
     private static String database_user="root";
     private static String getDatabase_password="zc142500";
     private static String database="person";

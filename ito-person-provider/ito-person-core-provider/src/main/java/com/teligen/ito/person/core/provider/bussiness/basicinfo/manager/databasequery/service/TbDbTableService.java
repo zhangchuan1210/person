@@ -3,6 +3,7 @@ package com.teligen.ito.person.core.provider.bussiness.basicinfo.manager.databas
 import com.teligen.ito.person.core.provider.bussiness.basicinfo.manager.databasequery.entity.TbDbTable;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -18,4 +19,6 @@ public interface TbDbTableService extends IService<TbDbTable> {
     TbDbTable setlectTable(String id);
 
     Map<Integer, Map<Integer,TbDbTable>> getTableByDbId();
+
+    List<TbDbTable> testJoin();
 }
